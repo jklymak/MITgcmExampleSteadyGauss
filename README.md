@@ -3,6 +3,10 @@
   - `./code/` contains modified code
   - `./input/` contains the `data*` files and the python script to generate the data sets
 
+## Installing the stuff we need
+
+Have a look at [This Page](https://jklymak.github.io/DirStu17/Projects/install/)
+
 ## Setting up
 
 ### Compiling
@@ -27,4 +31,17 @@ then `make depend` followed by `make`
 
 ### Running
 
+
+**Generate the data**
+
 In `./input`, run `python gendata.py`.  
+
+Note that this writes many files in `../runs/RunFr216`.  This is where we will run the model from.  Why do we move it?  Because we often want a number of runs that are similar, and this ensures reproducibility.  In addition to creating the files we need some plots are made into `../runs/RunFr216/figs/` that are often useful to make sure we did what we wanted, and the './input',  './code',  './build_options', and  './analysis', directories are saved into this directory as well.  These essentially ensure that the model can be rerun even if the data is removed.
+
+**Run the model**
+
+Now we can execute the model:
+```
+mpirun -np 4 ../../build/mitgcmuv
+```
+where `-np 4` means we want 4 processors (as also specified in `code/SIZE.h`)
