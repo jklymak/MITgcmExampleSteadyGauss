@@ -1,28 +1,19 @@
 # Open-boundaries
  &OBCS_PARM01
- OB_Jnorth=1*-1,
- OB_Jsouth=1*1,
- OB_Ieast=1600*0,
- OB_Iwest=1600*0,
- useOrlanskiNorth=.FALSE.,
- useOrlanskiSouth=.FALSE.,
- useOrlanskiEast=.FALSE.,
- useOrlanskiWest=.FALSE.,
+ OB_Iwest=1*1,
+ OB_Ieast=1*-1,
+ OB_Jnorth=80*0,
+ OB_Jsouth=80*0,
  useOBCSsponge=.TRUE.,
+ OBEuFile = 'Ue.bin'
+ OBWuFile = 'Uw.bin'
+ OBEtFile = 'Te.bin'
+ OBWtFile = 'Tw.bin'
  /
 
 # Orlanski parameters
  &OBCS_PARM02
- CMAX=0.45,
- cvelTimeScale=400.,
- recip_TimeScale=2.2364E-5,2.3148E-5,2.1944E-5,2.3212E-5,1.1606E-5,1.0759E-5,1.1542E-5,1.0338E-5,
- Uinflow = 0.358560,0.132540,0.067380,0.049860,0.405780,0.376260,0.108960,0.066720,
- tide_theta=1.5708,1.5708,1.5708,1.5708,1.5708,1.5708,
- tide_alpha=0.3720,0.3593,0.3791,0.3584,0.7167,0.7732,0.7207,0.8046,
- vToEta=7.517, 
- dtSouth=0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
- dtNorth =-3433.3,-25035.1,-17119.5,-15404.7,-43124.1,-64109.0,-14971.5,-94428.1,
- /
+/
 
 # Sponge layer parameters
  &OBCS_PARM03

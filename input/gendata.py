@@ -1,6 +1,7 @@
 from numpy import *
 from scipy import *
 from pylab import *
+import numpy.matlib as matlib
 from shutil import copy
 from os import mkdir
 
@@ -18,26 +19,29 @@ N0=5.2e-3
 u0=Fr*N0*h0
 
 
-outdir='dataHs%04d' % (10000*Fr)
+outdir='../runs/RunFr%03d' % (10000*Fr)
 try:
   mkdir(outdir)
 except:
   print outdir+' Exists'
-copy('gendata.py',outdir)
+try:
+  mkdir(outdir+'/figs')
+except:
+  print outdir+'/figs Exists'
+copy('./gendata.py',outdir)
 
+# These must match ../code/SIZE.h
 ny = 1
-nx = 8*188
-nz = 200
-
+nx = 4*20
+nz = 25
 
 # y direction:
 dy = 1000
-
 # x direction
 xt = 410e3
 
-nmid = 100.
-dx0=50.
+nmid = 50.
+dx0=300.
 nleft = (nx-nmid)/2
 nright = (nx-nmid)/2
 dx = zeros(nx)
@@ -49,15 +53,17 @@ dx[(nleft+nmid):]=dxright
 x=cumsum(dx)
 x = x-x[nx/2]
 
-with open(outdir+"/delXvar", "wb") as f:
+with open(outdir+"/delXvar.bin", "wb") as f:
 	dx.tofile(f)
 f.close()
-plot(x/1000.,dx)
-xlim([-10,10])
-savefig(outdir+'/dx.pdf')
+# plot
+if 1:
+    plot(x/1000.,dx)
+    xlim([-10,10])
+    savefig(outdir+'/figs/dx.pdf')
 
 # topo
-sigma = 10000. # m
+sigma = 4000. # m
 
 topo = 1500*exp(-x*x/(sigma**2))-1500+h0
 #topo = h0*exp(-x*x/(3000**2))
@@ -65,10 +71,13 @@ print shape(topo)
 topo[topo<0.]=0.
 topo=-H+topo
 topo[topo<-H]=-H
-clf()
-plot(x/1.e3,topo)
-xlim([-20.,20.])
-savefig(outdir+'/topo.pdf')
+
+# plot
+if 1:
+    clf()
+    plot(x/1.e3,topo)
+    # xlim([-20.,20.])
+    savefig(outdir+'/figs/topo.pdf')
 
 
 with open(outdir+"/topo.bin", "wb") as f:
@@ -79,7 +88,7 @@ f.close()
 
 dz=zeros(nz)+H/nz
 
-with open(outdir+"/delZvar", "wb") as f:
+with open(outdir+"/delZvar.bin", "wb") as f:
 	dz.tofile(f)
 f.close()
 
@@ -91,51 +100,35 @@ T0 = 28+cumsum(N0**2/g/alpha*(-dz))
 with open(outdir+"/TRef.bin", "wb") as f:
 	T0.tofile(f)
 f.close()
+
+# save T0 over whole domain
+TT0 = matlib.repmat(T0,nx,1).T
+with open(outdir+"/T0.bin", "wb") as f:
+	TT0.tofile(f)
+
+
 z=cumsum(dz)
-
-clf()
-plot(T0,z)
-savefig(outdir+'/TO.pdf')
-
-print u0
+# plot:
+if 1:
+    clf()
+    plot(T0,z)
+    savefig(outdir+'/figs/TO.pdf')
 
 # Forcing for boundaries
-dt=1240.
-time = arange(0,12.*12.4*3600.-100.,dt)
-print shape(time)
+dt=3720.
+time = arange(0,12.*3720.,dt)
 om = 2*pi/12.40/3600;
-print u0
-uw = u0*sin(om*time)
-a=pow(tanh((time)/3600./10.),1.)
-a=a/max(a);
-uw=uw*a
-uw[0]=0.
-uw[-1]=0.
-uw[-2]=0.
-uw[-3]=0.
-
-g = 9.81
-cbt = sqrt(g*H)
-timee=time-(x[-14]-x[14])/cbt;
-ue = u0*sin(om*(timee))
-#a=(tanh((timee)/3600./5.))
-a=a/max(a)
-ue=ue*a
-ue[-1]=0.
-ue[0]=0.
-ue[-1]=0.
-ue[-2]=0.
-ue[-3]=0.
-clf()
-plot(time/3600./12.4,ue,label='Ue')
-plot(time/3600/12.4,uw,label='Uw')
-legend()
-xlabel('t/T')
-ylabel('Vel')
-title('%d' % time[-1])
-savefig(outdir+'/Vels.pdf')
-print shape(time)
-print time[-1]+dt
+uw = u0+0.*time
+ue = u0+0.*time
+# plot:
+if 1:
+    plot(time/3600./12.4,ue,label='Ue')
+    plot(time/3600/12.4,uw,label='Uw')
+    legend()
+    xlabel('t/T')
+    ylabel('Vel')
+    title('%d' % time[-1])
+    savefig(outdir+'/figs/Vels.pdf')
 
 # try time,nz,ny...
 
@@ -150,15 +143,13 @@ print shape(uwn)
 for j in range(0,ny):
   for i in range(0,nz):
     uwn[:,i,j]=uw
-print shape(uen)
-          
-with open(outdir+"/Ue%04d.obcs" % (Fr*10000), "wb") as f:
+print shape(uwn)
+
+with open(outdir+"/Ue.bin","wb") as f:
   uen.tofile(f)
 
-with open(outdir+"/Uw%04d.obcs" % (Fr*10000), "wb") as f:
+with open(outdir+"/Uw.bin", "wb") as f:
   uwn.tofile(f)
-
-
 
 t=zeros((shape(time)[0],nz,ny))
 for j in range(0,ny):
@@ -166,26 +157,20 @@ for j in range(0,ny):
 		for k in range(0,shape(time)[0]):
 			t[k,i,j]=T0[i]
 print shape(t)
-with open(outdir+"/Te.obcs", "wb") as f:
+with open(outdir+"/Te.bin", "wb") as f:
 	t.tofile(f)
 f.close()
-with open(outdir+"/Tw.obcs", "wb") as f:
+with open(outdir+"/Tw.bin", "wb") as f:
 	t.tofile(f)
 f.close()
-
-###  Make data.obcs and put into this directory....
-with  open("data.obcs0100") as fin:
-  with open(outdir+"/data.obcs", "wt") as fout:
-    for line in fin:
-      fout.write( line.replace('0100', '%04d'% (Fr*10000)) )
-fin.close()
-fout.close()
 
 ## Copy some other files
-import shutil 
-
-shutil.copy('dataHy5', outdir+'/data')
+import shutil
+shutil.copy('data', outdir+'/data')
 shutil.copy('eedata', outdir)
-shutil.copy('data.pp81', outdir)
+shutil.copy('data.kl10', outdir)
+shutil.copy('data.mnc', outdir)
+shutil.copy('data.obcs', outdir)
 shutil.copy('data.diagnostics', outdir)
-shutil.copy('data.pkgKL', outdir+'/data.pkg')
+shutil.copy('data.pkg', outdir+'/data.pkg')
+shutil.copy('../build/mitgcmuv', outdir)
