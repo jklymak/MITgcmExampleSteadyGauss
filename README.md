@@ -19,7 +19,12 @@ then `make depend` followed by `make`
 
   1. Change `code/SIZE.h` and recompile.
   2. Change `input/gendata.py` and rerun `python gendata.py`.  It would be good practice to make a new name for the run at this point.
+  3. If using open boundaries change `input/data.obcs` i.e. `OB_Jnorth=80*0,` where in this case `ny=80`
 
 ### Changing other parameters
 
-  1. Edit  `gendata.py`.
+  1. Edit  `gendata.py`.  For new runs it is best to change the value of `outdir` right away.
+
+### Running
+
+In `./input`, run `python gendata.py`.  

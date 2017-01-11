@@ -4,6 +4,7 @@ from pylab import *
 import numpy.matlib as matlib
 from shutil import copy
 from os import mkdir
+import os
 
 def lininc(n,Dx,dx0):
   a=(Dx-n*dx0)*2./n/(n+1)
@@ -173,4 +174,9 @@ shutil.copy('data.mnc', outdir)
 shutil.copy('data.obcs', outdir)
 shutil.copy('data.diagnostics', outdir)
 shutil.copy('data.pkg', outdir+'/data.pkg')
-shutil.copy('../build/mitgcmuv', outdir)
+# also store these.  They are small and helpful to document what we did
+for nm in {'input','code','build_options','analysis'}:
+    to_path = outdir+'/'+nm
+    if os.path.exists(to_path):
+        shutil.rmtree(to_path)
+    shutil.copytree('../'+nm, outdir+'/'+nm)
