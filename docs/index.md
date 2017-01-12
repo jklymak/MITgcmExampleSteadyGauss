@@ -1,7 +1,12 @@
 # Example MITgcm setup for steady stratified flow over Gaussian Bump
 
+![Example Model Snapshot](./images/Snapshot.png)
+
   - `./code/` contains modified code
   - `./input/` contains the `data*` files and the python script to generate the data sets
+  - `./build_options/` contains the compiler flags form macOS 10.
+  - `build` is a placeholder for where the gcm should be built
+  - `runs` is where you might keep model output.
 
 ## Installing the stuff we need
 
