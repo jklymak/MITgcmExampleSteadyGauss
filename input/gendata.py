@@ -12,7 +12,7 @@ def lininc(n,Dx,dx0):
   dx = dx0+arange(1.,n+1.,1.)*a
   return dx
 
-Fr=0.13/6.
+Fr=0.13
 H = 2000.
 h0=500.
 om = 2.*pi/12.42/3600.

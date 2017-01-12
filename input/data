@@ -61,7 +61,7 @@
  niter0=0,
 # times are in s
  startTime=0,
- endTime=37500,
+ endTime=97500,
  deltaT=12.4,
  abEps=0.1,
 # once per tide checkpoint...

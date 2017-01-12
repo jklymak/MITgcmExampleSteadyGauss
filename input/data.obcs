@@ -22,5 +22,5 @@
  Urelaxobcsbound=100.,
  Vrelaxobcsinner=1000.0,
  Vrelaxobcsbound=100.0,
- spongeThickness=30,
+ spongeThickness=10,
  /
