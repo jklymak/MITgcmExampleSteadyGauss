@@ -12,11 +12,13 @@ Have a look at [this Page](./install.html)
 ### Compiling
 
 './build' is where we compile the gcm.  To compile you should run:
+
 ```
  /Users/jklymak/MITgcmc66b/MITgcm/tools/genmake2 \
   -optfile=../build_options/darwin_brewgfortranmpi -mods=../code/ \
    -rootdir=/Users/jklymak/MITgcmc66b/MITgcm
 ```
+
 then `make depend` followed by `make`
 
 ### Changing domain size
