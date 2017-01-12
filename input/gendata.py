@@ -118,11 +118,13 @@ if 1:
 # Forcing for boundaries
 dt=3720.
 time = arange(0,12.*3720.,dt)
+print time/3600./12.4
 om = 2*pi/12.40/3600;
 uw = u0+0.*time
 ue = u0+0.*time
 # plot:
 if 1:
+    clf()
     plot(time/3600./12.4,ue,label='Ue')
     plot(time/3600/12.4,uw,label='Uw')
     legend()
@@ -137,14 +139,14 @@ uen=zeros((shape(time)[0],nz,ny))
 for j in range(0,ny):
   for i in range(0,nz):
     uen[:,i,j]=ue
-print shape(uen)
+#print(uen)
 
 uwn=zeros((shape(time)[0],nz,ny))
 print shape(uwn)
 for j in range(0,ny):
   for i in range(0,nz):
     uwn[:,i,j]=uw
-print shape(uwn)
+#print(uwn)
 
 with open(outdir+"/Ue.bin","wb") as f:
   uen.tofile(f)

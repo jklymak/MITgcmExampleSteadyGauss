@@ -5,10 +5,11 @@
  OB_Jnorth=80*0,
  OB_Jsouth=80*0,
  useOBCSsponge=.TRUE.,
- OBEuFile = 'Ue.bin'
- OBWuFile = 'Uw.bin'
- OBEtFile = 'Te.bin'
- OBWtFile = 'Tw.bin'
+ useOBCSprescribe=.TRUE.,
+ OBEuFile = 'Ue.bin',
+ OBWuFile = 'Uw.bin',
+ OBEtFile = 'Te.bin',
+ OBWtFile = 'Tw.bin',
  /
 
 # Orlanski parameters

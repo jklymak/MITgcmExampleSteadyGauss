@@ -6,7 +6,8 @@
 #
 # Continuous equation parameters
  &PARM01
- tRefFile='TRef.bin'
+ debugLevel=2,
+ tRefFile='TRef.bin',
  sRef= 25*35.,
  viscAz=1.E-5,
  viscAh=1.0E-4,
@@ -60,7 +61,7 @@
  niter0=0,
 # times are in s
  startTime=0,
- endTime=3750,
+ endTime=37500,
  deltaT=12.4,
  abEps=0.1,
 # once per tide checkpoint...
