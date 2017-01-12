@@ -5,7 +5,7 @@
 
 ## Installing the stuff we need
 
-Have a look at [This Page](https://jklymak.github.io/DirStu17/Projects/install/)
+Have a look at [this Page](./install/)
 
 ## Setting up
 
