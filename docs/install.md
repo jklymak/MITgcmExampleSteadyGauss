@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installing (Dir Studies 2017)
+title: Installing 
 ---
 # Installing Software on a Mac
 
