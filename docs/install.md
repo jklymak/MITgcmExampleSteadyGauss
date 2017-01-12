@@ -19,6 +19,9 @@ Tested on macOS 10, but should work on relatively recent OS X as well.
    1. Install [anaconda](https://www.continuum.io/downloads)  I use python 2.7 still, but I think just about everything now works w/ python 3.5
    2. Try `ipython --pylab`.  From that command line try something like `fig,ax=plt.subplots();ax.plot(np.arange(10))`.
    3. Try `jupyter-notebook` and open the webpage they suggest.  See their [website](http://jupyter.org) for demos and I'll give some example python notebooks soon.
+   4. install [xmitgcm](http://xmitgcm.readthedocs.io/en/latest/)
+      1. `conda install xarray dask`
+      2. `pip install xmitgcm`
 
 ## MITgcm
 
