@@ -5,7 +5,7 @@
 
 ## Installing the stuff we need
 
-Have a look at [this Page](./install/)
+Have a look at [this Page](./install.html)
 
 ## Setting up
 
