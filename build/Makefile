@@ -1,9 +1,9 @@
 # Multithreaded + multi-processing makefile for:
-#    Darwin valdez.seos.uvic.ca 16.3.0 Darwin Kernel Version 16.3.0: Thu Nov 17 20:23:58 PST 2016; root:xnu-3789.31.2~1/RELEASE_X86_64 x86_64
+#    Darwin valdez.seos.uvic.ca 16.4.0 Darwin Kernel Version 16.4.0: Thu Dec 22 22:53:21 PST 2016; root:xnu-3789.41.3~3/RELEASE_X86_64 x86_64
 # This makefile was generated automatically on
-#    Wed Jan 11 14:17:35 PST 2017
+#    Mon Mar  6 12:05:09 PST 2017
 # by the command:
-#    /Users/jklymak/MITgcmc66b/MITgcm/tools/genmake2 -optfile=../build_options/darwin_brewgfortranmpi -mods=../code/ -rootdir=/Users/jklymak/MITgcmc66b/MITgcm
+#    /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/tools/genmake2 -optfile=../build_options/darwin_brewgfortranmpi -mods=../code/ -rootdir=/Users/jklymak/Dropbox/MITgcmCVS/MITgcm
 # executed by:
 #    jklymak@valdez.seos.uvic.ca:/Users/jklymak/Dropbox/Teaching/MITgcmExampleSteadyGauss/build
 #
@@ -25,23 +25,23 @@
 # LINK         : Command for link editor program
 # LIBS         : Library flags /or/ additional optimization/debugging flags
 
-ROOTDIR     = /Users/jklymak/MITgcmc66b/MITgcm
+ROOTDIR     = /Users/jklymak/Dropbox/MITgcmCVS/MITgcm
 BUILDDIR    = .
-SOURCEDIRS  =  ../code/ /Users/jklymak/MITgcmc66b/MITgcm/pkg/debug /Users/jklymak/MITgcmc66b/MITgcm/pkg/diagnostics /Users/jklymak/MITgcmc66b/MITgcm/pkg/generic_advdiff /Users/jklymak/MITgcmc66b/MITgcm/pkg/kl10 /Users/jklymak/MITgcmc66b/MITgcm/pkg/mdsio /Users/jklymak/MITgcmc66b/MITgcm/pkg/mnc /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_common /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_fluxform /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_vecinv /Users/jklymak/MITgcmc66b/MITgcm/pkg/monitor /Users/jklymak/MITgcmc66b/MITgcm/pkg/obcs /Users/jklymak/MITgcmc66b/MITgcm/pkg/rw /Users/jklymak/MITgcmc66b/MITgcm/pkg/timeave /Users/jklymak/MITgcmc66b/MITgcm/eesupp/src /Users/jklymak/MITgcmc66b/MITgcm/model/src
-INCLUDEDIRS =  ../code/ /Users/jklymak/MITgcmc66b/MITgcm/pkg/debug /Users/jklymak/MITgcmc66b/MITgcm/pkg/diagnostics /Users/jklymak/MITgcmc66b/MITgcm/pkg/generic_advdiff /Users/jklymak/MITgcmc66b/MITgcm/pkg/kl10 /Users/jklymak/MITgcmc66b/MITgcm/pkg/mdsio /Users/jklymak/MITgcmc66b/MITgcm/pkg/mnc /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_common /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_fluxform /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_vecinv /Users/jklymak/MITgcmc66b/MITgcm/pkg/monitor /Users/jklymak/MITgcmc66b/MITgcm/pkg/obcs /Users/jklymak/MITgcmc66b/MITgcm/pkg/rw /Users/jklymak/MITgcmc66b/MITgcm/pkg/timeave /Users/jklymak/MITgcmc66b/MITgcm/eesupp/inc /Users/jklymak/MITgcmc66b/MITgcm/model/inc
+SOURCEDIRS  =  ../code/ $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/obcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
+INCLUDEDIRS =  ../code/ $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/kl10 $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/obcs $(ROOTDIR)/pkg/rw $(ROOTDIR)/pkg/timeave $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
 EXEDIR      = .
 EXECUTABLE  = $(EXEDIR)/mitgcmuv
-TOOLSDIR    = /Users/jklymak/MITgcmc66b/MITgcm/tools
+TOOLSDIR    = $(ROOTDIR)/tools
 OADTOOLS    = 
 
 #eh3  new defines for the adjoint work
-AUTODIFF    = /Users/jklymak/MITgcmc66b/MITgcm/pkg/autodiff
+AUTODIFF    = $(ROOTDIR)/pkg/autodiff
 EXE_AD      = mitgcmuv_ad
 EXE_FTL     = mitgcmuv_ftl
 EXE_SVD     = mitgcmuv_svd
 
-ENABLED_PACKAGES =  -DALLOW_DEBUG -DALLOW_DIAGNOSTICS -DALLOW_GENERIC_ADVDIFF -DALLOW_KL10 -DALLOW_MDSIO -DALLOW_MNC -DALLOW_MOM_COMMON -DALLOW_MOM_FLUXFORM -DALLOW_MOM_VECINV -DALLOW_MONITOR -DALLOW_OBCS -DALLOW_RW -DALLOW_TIMEAVE
-DISABLED_PACKAGES =  -UALLOW_ADMTLM -UALLOW_AIM_V23 -UALLOW_ATM2D -UALLOW_ATM_COMMON -UALLOW_ATM_COMPON_INTERF -UALLOW_ATM_OCN_COUPLER -UALLOW_ATM_PHYS -UALLOW_AUTODIFF -UALLOW_BBL -UALLOW_BLING -UALLOW_BULK_FORCE -UALLOW_CAL -UALLOW_CD_CODE -UALLOW_CFC -UALLOW_CHEAPAML -UALLOW_CHRONOS -UALLOW_COMPON_COMMUNIC -UALLOW_COST -UALLOW_CTRL -UALLOW_DIC -UALLOW_DOWN_SLOPE -UALLOW_EBM -UALLOW_ECCO -UALLOW_EMBED_FILES -UALLOW_EXCH2 -UALLOW_EXF -UALLOW_FIZHI -UALLOW_FLT -UALLOW_FRAZIL -UALLOW_GCHEM -UALLOW_GGL90 -UALLOW_GMREDI -UALLOW_GRDCHK -UALLOW_GRIDALT -UALLOW_ICEFRONT -UALLOW_KPP -UALLOW_LAND -UALLOW_LAYERS -UALLOW_LONGSTEP -UALLOW_MATRIX -UALLOW_MY82 -UALLOW_MYPACKAGE -UALLOW_OCN_COMPON_INTERF -UALLOW_OFFLINE -UALLOW_OPENAD -UALLOW_OPPS -UALLOW_PP81 -UALLOW_PROFILES -UALLOW_PTRACERS -UALLOW_RBCS -UALLOW_REGRID -UALLOW_RUNCLOCK -UALLOW_SALT_PLUME -UALLOW_SBO -UALLOW_SEAICE -UALLOW_SHAP_FILT -UALLOW_SHELFICE -UALLOW_SHOWFLOPS -UALLOW_SMOOTH -UALLOW_SPHERE -UALLOW_STREAMICE -UALLOW_THSICE -UALLOW_ZONAL_FILT
+ENABLED_PACKAGES =  -DALLOW_DEBUG -DALLOW_DIAGNOSTICS -DALLOW_GENERIC_ADVDIFF -DALLOW_KL10 -DALLOW_MDSIO -DALLOW_MOM_COMMON -DALLOW_MOM_FLUXFORM -DALLOW_MOM_VECINV -DALLOW_MONITOR -DALLOW_OBCS -DALLOW_RW -DALLOW_TIMEAVE
+DISABLED_PACKAGES =  -UALLOW_ADMTLM -UALLOW_AIM_V23 -UALLOW_ATM2D -UALLOW_ATM_COMMON -UALLOW_ATM_COMPON_INTERF -UALLOW_ATM_OCN_COUPLER -UALLOW_ATM_PHYS -UALLOW_AUTODIFF -UALLOW_BBL -UALLOW_BLING -UALLOW_BULK_FORCE -UALLOW_CAL -UALLOW_CD_CODE -UALLOW_CFC -UALLOW_CHEAPAML -UALLOW_CHRONOS -UALLOW_COMPON_COMMUNIC -UALLOW_COST -UALLOW_CTRL -UALLOW_DIC -UALLOW_DOWN_SLOPE -UALLOW_EBM -UALLOW_ECCO -UALLOW_EMBED_FILES -UALLOW_EXCH2 -UALLOW_EXF -UALLOW_FIZHI -UALLOW_FLT -UALLOW_FRAZIL -UALLOW_GCHEM -UALLOW_GGL90 -UALLOW_GMREDI -UALLOW_GRDCHK -UALLOW_GRIDALT -UALLOW_ICEFRONT -UALLOW_KPP -UALLOW_LAND -UALLOW_LAYERS -UALLOW_LONGSTEP -UALLOW_MATRIX -UALLOW_MNC -UALLOW_MY82 -UALLOW_MYPACKAGE -UALLOW_OCN_COMPON_INTERF -UALLOW_OFFLINE -UALLOW_OPENAD -UALLOW_OPPS -UALLOW_PP81 -UALLOW_PROFILES -UALLOW_PTRACERS -UALLOW_RBCS -UALLOW_REGRID -UALLOW_RUNCLOCK -UALLOW_SALT_PLUME -UALLOW_SBO -UALLOW_SEAICE -UALLOW_SHAP_FILT -UALLOW_SHELFICE -UALLOW_SHOWFLOPS -UALLOW_SMOOTH -UALLOW_SPHERE -UALLOW_STREAMICE -UALLOW_THSICE -UALLOW_ZONAL_FILT
 
 # These files are created by Makefile
 SPECIAL_FILES = PACKAGES_CONFIG.h AD_CONFIG.h FC_NAMEMANGLE.h BUILD_INFO.h
@@ -115,6 +115,7 @@ F77_SRC_FILES =  \
  diagnostics_fill_rs.F \
  diagnostics_fill_state.F \
  diagnostics_fract_fill.F \
+ diagnostics_ini_io.F \
  diagnostics_init_early.F \
  diagnostics_init_fixed.F \
  diagnostics_init_varia.F \
@@ -290,26 +291,6 @@ F77_SRC_FILES =  \
  mdsio_write_whalos.F \
  mdsio_writelocal.F \
  mdsio_writevec_loc.F \
- MNC_CW_READWRITE_I.F \
- MNC_CW_READWRITE_RL.F \
- MNC_CW_READWRITE_RS.F \
- mnc_cw_citer.F \
- mnc_cw_cvars.F \
- mnc_cw_init.F \
- mnc_cw_missingvals.F \
- mnc_cw_model_attr.F \
- mnc_cw_udim.F \
- mnc_cw_write_grid_info.F \
- mnc_cwrapper.F \
- mnc_dim.F \
- mnc_dump.F \
- mnc_file.F \
- mnc_grid.F \
- mnc_init.F \
- mnc_readparms.F \
- mnc_update_time.F \
- mnc_utils.F \
- mnc_var.F \
  mom_calc_3d_strain.F \
  mom_calc_absvort3.F \
  mom_calc_hdiv.F \
@@ -450,6 +431,7 @@ F77_SRC_FILES =  \
  read_glvec_rs.F \
  read_mflds.F \
  read_rec.F \
+ rw_get_suffix.F \
  set_write_global_fld.F \
  write_fld_3d_rl.F \
  write_fld_3d_rs.F \
@@ -822,6 +804,7 @@ NON_AD_F77_SRC_FILES =  \
  diagnostics_fill_rs.F \
  diagnostics_fill_state.F \
  diagnostics_fract_fill.F \
+ diagnostics_ini_io.F \
  diagnostics_init_early.F \
  diagnostics_init_fixed.F \
  diagnostics_init_varia.F \
@@ -944,26 +927,6 @@ NON_AD_F77_SRC_FILES =  \
  mdsio_write_whalos.F \
  mdsio_writelocal.F \
  mdsio_writevec_loc.F \
- MNC_CW_READWRITE_I.F \
- MNC_CW_READWRITE_RL.F \
- MNC_CW_READWRITE_RS.F \
- mnc_cw_citer.F \
- mnc_cw_cvars.F \
- mnc_cw_init.F \
- mnc_cw_missingvals.F \
- mnc_cw_model_attr.F \
- mnc_cw_udim.F \
- mnc_cw_write_grid_info.F \
- mnc_cwrapper.F \
- mnc_dim.F \
- mnc_dump.F \
- mnc_file.F \
- mnc_grid.F \
- mnc_init.F \
- mnc_readparms.F \
- mnc_update_time.F \
- mnc_utils.F \
- mnc_var.F \
  mom_calc_3d_strain.F \
  mom_calc_smag_3d.F \
  mom_diagnostics_init.F \
@@ -1018,6 +981,7 @@ NON_AD_F77_SRC_FILES =  \
  read_glvec_rl.F \
  read_glvec_rs.F \
  read_mflds.F \
+ rw_get_suffix.F \
  set_write_global_fld.F \
  write_fld_3d_rl.F \
  write_fld_3d_rs.F \
@@ -1226,8 +1190,6 @@ NON_AD_F77_SRC_FILES =  \
  write_pickup.F \
  write_state.F
 C_SRC_FILES =  \
- mnc_create_dir.c \
- mnc_cw_fsize.c \
  gsl_ieee_env.c \
  ptwrapper.c \
  setdir.c \
@@ -1261,12 +1223,6 @@ H_SRC_FILES =  \
  MDSIO_BUFF_3D.h \
  MDSIO_BUFF_WH.h \
  MDSIO_OPTIONS.h \
- MNC_BUFF.h \
- MNC_COMMON.h \
- MNC_ID_HEADER.h \
- MNC_OPTIONS.h \
- MNC_PARAMS.h \
- MNC_SIZE.h \
  MOM_COMMON_OPTIONS.h \
  MOM_VISC.h \
  MOM_FLUXFORM.h \
@@ -1355,7 +1311,6 @@ AD_FLOW_FILES =  \
  debug_ad.flow \
  diagnostics_ad.flow \
  mdsio_ad.flow \
- mnc_ad.flow \
  monitor_ad.flow \
  obcs_ad.flow \
  rw_ad.flow \
@@ -1390,7 +1345,7 @@ depend:
 
 lib: libmitgcmuv.a
 
-libmitgcmuv.a: $(OBJFILES)
+libmitgcmuv.a: $(SPECIAL_FILES) $(OBJFILES)
 	ar rcv libmitgcmuv.a $(OBJFILES)
 	ar d   libmitgcmuv.a main.o
 
@@ -1431,7 +1386,7 @@ CLEAN:
 	-rm -f oad_cp.[0-9][0-9][0-9].?????
 
 makefile:
-	$(TOOLSDIR)/genmake2  "-optfile=../build_options/darwin_brewgfortranmpi" "-mods=../code/" "-rootdir=/Users/jklymak/MITgcmc66b/MITgcm"
+	$(TOOLSDIR)/genmake2  "-optfile=../build_options/darwin_brewgfortranmpi" "-mods=../code/" "-rootdir=/Users/jklymak/Dropbox/MITgcmCVS/MITgcm"
 cleanlinks:
 	-find . -type l -exec rm {} \;
 
@@ -1448,9 +1403,9 @@ FC_NAMEMANGLE.h:
 
 BUILD_INFO.h:
 	@echo Creating $@ ...
-	-echo "#define THISVER 'checkpoint66b'" > $@
+	-echo "#define THISVER 'checkpoint66d'" > $@
 	-echo "#define THISUSER 'jklymak'" >> $@
-	-echo "#define THISDATE 'Wed Jan 11 14:17:35 PST 2017'" >> $@
+	-echo "#define THISDATE 'Mon Mar  6 12:05:09 PST 2017'" >> $@
 	-echo "#define THISHOST 'valdez.seos.uvic.ca'" >> $@
 
 # The normal chain of rules is (  .F - .for - .o  )
@@ -1901,77 +1856,73 @@ svd_touch:
 # This section creates symbolic links
 
 
-#  These files are linked from ../code/
+#  These files are linked from ../code/ ( aka ../code/ )
  CPP_OPTIONS.h OBCS_OPTIONS.h SIZE.h :
 	if [ ! -L $@ ]; then $(LN) ../code//$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/debug
+#  These files are linked from $(ROOTDIR)/pkg/debug ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/debug )
  DEBUG_OPTIONS.h chksum_tiled.F debug_call.F debug_cs_corner_uv.F debug_enter.F debug_fld_stats_rl.F debug_fld_stats_rs.F debug_leave.F debug_msg.F debug_stats_rl.F debug_stats_rs.F fill_in_corners_rl.F write_fullarray_rl.F write_fullarray_rs.F debug_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/debug/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/debug/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/diagnostics
- DIAGNOSTICS.h DIAGNOSTICS_CALC.h DIAGNOSTICS_SIZE.h DIAGSTATS_REGIONS.h DIAG_OPTIONS.h diag_calc_psivel.F diag_cg2d.F diag_vegtile_fill.F diagnostics_addtolist.F diagnostics_calc_phivel.F diagnostics_check.F diagnostics_clear.F diagnostics_fill.F diagnostics_fill_field.F diagnostics_fill_rs.F diagnostics_fill_state.F diagnostics_fract_fill.F diagnostics_init_early.F diagnostics_init_fixed.F diagnostics_init_varia.F diagnostics_interp_p2p.F diagnostics_interp_vert.F diagnostics_is_on.F diagnostics_list_check.F diagnostics_main_init.F diagnostics_mnc_out.F diagnostics_out.F diagnostics_read_pickup.F diagnostics_readparms.F diagnostics_scale_fill.F diagnostics_scale_fill_rs.F diagnostics_set_calc.F diagnostics_set_levels.F diagnostics_set_pointers.F diagnostics_setdiag.F diagnostics_status_error.F diagnostics_sum_levels.F diagnostics_summary.F diagnostics_switch_onoff.F diagnostics_utils.F diagnostics_write.F diagnostics_write_pickup.F diagstats_ascii_out.F diagstats_calc.F diagstats_clear.F diagstats_close_io.F diagstats_fill.F diagstats_global.F diagstats_ini_io.F diagstats_local.F diagstats_mnc_out.F diagstats_others_calc.F diagstats_output.F diagstats_set_pointers.F diagstats_set_regions.F diagstats_setdiag.F diagnostics_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/diagnostics/$@ $@; fi
+#  These files are linked from $(ROOTDIR)/pkg/diagnostics ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/diagnostics )
+ DIAGNOSTICS.h DIAGNOSTICS_CALC.h DIAGNOSTICS_SIZE.h DIAGSTATS_REGIONS.h DIAG_OPTIONS.h diag_calc_psivel.F diag_cg2d.F diag_vegtile_fill.F diagnostics_addtolist.F diagnostics_calc_phivel.F diagnostics_check.F diagnostics_clear.F diagnostics_fill.F diagnostics_fill_field.F diagnostics_fill_rs.F diagnostics_fill_state.F diagnostics_fract_fill.F diagnostics_ini_io.F diagnostics_init_early.F diagnostics_init_fixed.F diagnostics_init_varia.F diagnostics_interp_p2p.F diagnostics_interp_vert.F diagnostics_is_on.F diagnostics_list_check.F diagnostics_main_init.F diagnostics_mnc_out.F diagnostics_out.F diagnostics_read_pickup.F diagnostics_readparms.F diagnostics_scale_fill.F diagnostics_scale_fill_rs.F diagnostics_set_calc.F diagnostics_set_levels.F diagnostics_set_pointers.F diagnostics_setdiag.F diagnostics_status_error.F diagnostics_sum_levels.F diagnostics_summary.F diagnostics_switch_onoff.F diagnostics_utils.F diagnostics_write.F diagnostics_write_pickup.F diagstats_ascii_out.F diagstats_calc.F diagstats_clear.F diagstats_close_io.F diagstats_fill.F diagstats_global.F diagstats_ini_io.F diagstats_local.F diagstats_mnc_out.F diagstats_others_calc.F diagstats_output.F diagstats_set_pointers.F diagstats_set_regions.F diagstats_setdiag.F diagnostics_ad.flow :
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/diagnostics/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/generic_advdiff
+#  These files are linked from $(ROOTDIR)/pkg/generic_advdiff ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/generic_advdiff )
  GAD.h GAD_FLUX_LIMITER.h GAD_OPTIONS.h GAD_SOM_VARS.h gad_ad_check_lev1_dir.h gad_ad_check_lev2_dir.h gad_ad_check_lev3_dir.h gad_ad_check_lev4_dir.h gad_advection.F gad_advscheme.F gad_biharm_r.F gad_biharm_x.F gad_biharm_y.F gad_c2_adv_r.F gad_c2_adv_x.F gad_c2_adv_y.F gad_c2_impl_r.F gad_c4_adv_r.F gad_c4_adv_x.F gad_c4_adv_y.F gad_calc_rhs.F gad_check.F gad_del2.F gad_diagnostics_init.F gad_diagnostics_state.F gad_diff_r.F gad_diff_x.F gad_diff_y.F gad_dst2u1_adv_r.F gad_dst2u1_adv_x.F gad_dst2u1_adv_y.F gad_dst2u1_impl_r.F gad_dst3_adv_r.F gad_dst3_adv_x.F gad_dst3_adv_y.F gad_dst3fl_adv_r.F gad_dst3fl_adv_x.F gad_dst3fl_adv_y.F gad_dst3fl_impl_r.F gad_exch_som.F gad_fluxlimit_adv_r.F gad_fluxlimit_adv_x.F gad_fluxlimit_adv_y.F gad_fluxlimit_impl_r.F gad_grad_x.F gad_grad_y.F gad_implicit_r.F gad_init_fixed.F gad_init_varia.F gad_os7mp_adv_r.F gad_os7mp_adv_x.F gad_os7mp_adv_y.F gad_osc_hat_r.F gad_osc_hat_x.F gad_osc_hat_y.F gad_osc_mul_r.F gad_osc_mul_x.F gad_osc_mul_y.F gad_plm_fun.F gad_ppm_adv_r.F gad_ppm_adv_x.F gad_ppm_adv_y.F gad_ppm_flx_r.F gad_ppm_flx_x.F gad_ppm_flx_y.F gad_ppm_fun.F gad_ppm_hat_r.F gad_ppm_hat_x.F gad_ppm_hat_y.F gad_ppm_p3e_r.F gad_ppm_p3e_x.F gad_ppm_p3e_y.F gad_pqm_adv_r.F gad_pqm_adv_x.F gad_pqm_adv_y.F gad_pqm_flx_r.F gad_pqm_flx_x.F gad_pqm_flx_y.F gad_pqm_fun.F gad_pqm_hat_r.F gad_pqm_hat_x.F gad_pqm_hat_y.F gad_pqm_p5e_r.F gad_pqm_p5e_x.F gad_pqm_p5e_y.F gad_read_pickup.F gad_som_adv_r.F gad_som_adv_x.F gad_som_adv_y.F gad_som_advect.F gad_som_exchanges.F gad_som_fill_cs_corner.F gad_som_lim_r.F gad_som_prep_cs_corner.F gad_u3_adv_r.F gad_u3_adv_x.F gad_u3_adv_y.F gad_u3c4_impl_r.F gad_write_pickup.F salt_fill.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/generic_advdiff/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/generic_advdiff/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/kl10
+#  These files are linked from $(ROOTDIR)/pkg/kl10 ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/kl10 )
  KL10.h KL10_DIAGS.h KL10_OPTIONS.h KL10_TAVE.h kl10_calc.F kl10_calc_diff.F kl10_calc_visc.F kl10_check.F kl10_diagnostics_init.F kl10_init_fixed.F kl10_init_varia.F kl10_output.F kl10_readparms.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/kl10/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/kl10/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/mdsio
+#  These files are linked from $(ROOTDIR)/pkg/mdsio ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/mdsio )
  MDSIO_BUFF_3D.h MDSIO_BUFF_WH.h MDSIO_OPTIONS.h mdsio_buffertorl.F mdsio_buffertors.F mdsio_check4file.F mdsio_facef_read.F mdsio_gl.F mdsio_gl_slice.F mdsio_pass_r4torl.F mdsio_pass_r4tors.F mdsio_pass_r8torl.F mdsio_pass_r8tors.F mdsio_rd_rec_rl.F mdsio_rd_rec_rs.F mdsio_read_field.F mdsio_read_meta.F mdsio_read_section.F mdsio_read_tape.F mdsio_read_whalos.F mdsio_readvec_loc.F mdsio_rw_field.F mdsio_rw_slice.F mdsio_seg4torl.F mdsio_seg4tors.F mdsio_seg8torl.F mdsio_seg8tors.F mdsio_segxtorx_2d.F mdsio_wr_metafiles.F mdsio_wr_rec_rl.F mdsio_wr_rec_rs.F mdsio_write_field.F mdsio_write_meta.F mdsio_write_section.F mdsio_write_tape.F mdsio_write_whalos.F mdsio_writelocal.F mdsio_writevec_loc.F mdsio_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/mdsio/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mdsio/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/mnc
- MNC_BUFF.h MNC_COMMON.h MNC_CW_READWRITE_I.F MNC_CW_READWRITE_RL.F MNC_CW_READWRITE_RS.F MNC_ID_HEADER.h MNC_OPTIONS.h MNC_PARAMS.h MNC_SIZE.h mnc_create_dir.c mnc_cw_citer.F mnc_cw_cvars.F mnc_cw_fsize.c mnc_cw_init.F mnc_cw_missingvals.F mnc_cw_model_attr.F mnc_cw_udim.F mnc_cw_write_grid_info.F mnc_cwrapper.F mnc_dim.F mnc_dump.F mnc_file.F mnc_grid.F mnc_init.F mnc_readparms.F mnc_update_time.F mnc_utils.F mnc_var.F mnc_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/mnc/$@ $@; fi
-
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_common
+#  These files are linked from $(ROOTDIR)/pkg/mom_common ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/mom_common )
  MOM_COMMON_OPTIONS.h MOM_VISC.h mom_calc_3d_strain.F mom_calc_absvort3.F mom_calc_hdiv.F mom_calc_hfacz.F mom_calc_ke.F mom_calc_relvort3.F mom_calc_smag_3d.F mom_calc_strain.F mom_calc_tension.F mom_calc_visc.F mom_diagnostics_init.F mom_hdissip.F mom_init_fixed.F mom_quasihydrostatic.F mom_u_botdrag_impl.F mom_u_bottomdrag.F mom_u_coriolis_nh.F mom_u_implicit_r.F mom_u_metric_nh.F mom_u_rviscflux.F mom_u_sidedrag.F mom_uv_smag_3d.F mom_v_botdrag_impl.F mom_v_bottomdrag.F mom_v_coriolis_nh.F mom_v_implicit_r.F mom_v_metric_nh.F mom_v_rviscflux.F mom_v_sidedrag.F mom_w_coriolis_nh.F mom_w_metric_nh.F mom_w_sidedrag.F mom_w_smag_3d.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_common/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mom_common/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_fluxform
+#  These files are linked from $(ROOTDIR)/pkg/mom_fluxform ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/mom_fluxform )
  MOM_FLUXFORM.h MOM_FLUXFORM_OPTIONS.h mom_calc_rtrans.F mom_fluxform.F mom_u_adv_uu.F mom_u_adv_vu.F mom_u_adv_wu.F mom_u_coriolis.F mom_u_del2u.F mom_u_metric_cylinder.F mom_u_metric_sphere.F mom_u_xviscflux.F mom_u_yviscflux.F mom_uv_boundary.F mom_v_adv_uv.F mom_v_adv_vv.F mom_v_adv_wv.F mom_v_coriolis.F mom_v_del2v.F mom_v_metric_cylinder.F mom_v_metric_sphere.F mom_v_xviscflux.F mom_v_yviscflux.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_fluxform/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mom_fluxform/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_vecinv
+#  These files are linked from $(ROOTDIR)/pkg/mom_vecinv ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/mom_vecinv )
  MOM_VECINV_OPTIONS.h mom_vecinv.F mom_vi_coriolis.F mom_vi_del2uv.F mom_vi_hdissip.F mom_vi_u_coriolis.F mom_vi_u_coriolis_c4.F mom_vi_u_grad_ke.F mom_vi_u_vertshear.F mom_vi_v_coriolis.F mom_vi_v_coriolis_c4.F mom_vi_v_grad_ke.F mom_vi_v_vertshear.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/mom_vecinv/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mom_vecinv/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/monitor
+#  These files are linked from $(ROOTDIR)/pkg/monitor ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/monitor )
  MONITOR.h MONITOR_OPTIONS.h mon_advcfl.F mon_advcflw.F mon_advcflw2.F mon_calc_advcfl.F mon_calc_stats_rl.F mon_calc_stats_rs.F mon_init.F mon_ke.F mon_out.F mon_printstats_rl.F mon_printstats_rs.F mon_set_iounit.F mon_set_pref.F mon_solution.F mon_stats_latbnd_rl.F mon_stats_rl.F mon_stats_rs.F mon_surfcor.F mon_vort3.F mon_writestats_rl.F mon_writestats_rs.F monitor.F monitor_ad.F monitor_g.F monitor_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/monitor/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/monitor/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/obcs
+#  These files are linked from $(ROOTDIR)/pkg/obcs ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/obcs )
  OBCS_FIELDS.h OBCS_GRID.h OBCS_PARAMS.h OBCS_PTRACERS.h OBCS_SEAICE.h ORLANSKI.h obcs_ad_check_lev1_dir.h obcs_ad_check_lev2_dir.h obcs_ad_check_lev3_dir.h obcs_ad_check_lev4_dir.h obcs_add_tides.F obcs_adjust_uvice.F obcs_apply_eta.F obcs_apply_ptracer.F obcs_apply_r_star.F obcs_apply_seaice.F obcs_apply_surf_dr.F obcs_apply_ts.F obcs_apply_uv.F obcs_apply_uvice.F obcs_apply_w.F obcs_balance_flow.F obcs_calc.F obcs_calc_stevens.F obcs_check.F obcs_check_depths.F obcs_copy_tracer.F obcs_copy_uv_n.F obcs_diag_balance.F obcs_exchanges.F obcs_exf_load.F obcs_fields_load.F obcs_init_fixed.F obcs_init_variables.F obcs_mon_stats.F obcs_monitor.F obcs_output.F obcs_prescribe_read.F obcs_read_pickup.F obcs_readparms.F obcs_save_uv_n.F obcs_seaice_sponge.F obcs_set_connect.F obcs_sponge.F obcs_u1_adv_tracer.F obcs_write_pickup.F orlanski_east.F orlanski_init.F orlanski_north.F orlanski_south.F orlanski_west.F obcs_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/obcs/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/obcs/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/rw
- RW_MFLDS.h RW_OPTIONS.h get_write_global_fld.F read_fld_xy_rl.F read_fld_xy_rs.F read_fld_xyz_rl.F read_fld_xyz_rs.F read_glvec_rl.F read_glvec_rs.F read_mflds.F read_rec.F set_write_global_fld.F write_fld_3d_rl.F write_fld_3d_rs.F write_fld_s3d_rl.F write_fld_s3d_rs.F write_fld_xy_rl.F write_fld_xy_rs.F write_fld_xyz_rl.F write_fld_xyz_rs.F write_glvec_rl.F write_glvec_rs.F write_local_rl.F write_local_rs.F write_rec.F rw_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/rw/$@ $@; fi
+#  These files are linked from $(ROOTDIR)/pkg/rw ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/rw )
+ RW_MFLDS.h RW_OPTIONS.h get_write_global_fld.F read_fld_xy_rl.F read_fld_xy_rs.F read_fld_xyz_rl.F read_fld_xyz_rs.F read_glvec_rl.F read_glvec_rs.F read_mflds.F read_rec.F rw_get_suffix.F set_write_global_fld.F write_fld_3d_rl.F write_fld_3d_rs.F write_fld_s3d_rl.F write_fld_s3d_rs.F write_fld_xy_rl.F write_fld_xy_rs.F write_fld_xyz_rl.F write_fld_xyz_rs.F write_glvec_rl.F write_glvec_rs.F write_local_rl.F write_local_rs.F write_rec.F rw_ad.flow :
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/rw/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/pkg/timeave
+#  These files are linked from $(ROOTDIR)/pkg/timeave ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/pkg/timeave )
  TIMEAVE_OPTIONS.h TIMEAVE_STATV.h timeave_cumul_1k1t.F timeave_cumul_1t.F timeave_cumul_1vfc.F timeave_cumul_2v.F timeave_cumul_2vfc.F timeave_cumul_dif_1t.F timeave_cumulate.F timeave_init_fixed.F timeave_norma_2v.F timeave_normalize.F timeave_reset.F timeave_statv_write.F timeave_statvars.F timeave_surf_flux.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/pkg/timeave/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/timeave/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/eesupp/src
+#  These files are linked from $(ROOTDIR)/eesupp/src ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/eesupp/src )
  all_proc_die.F bar2.F bar_check.F barrier.F check_threads.F comm_stats.F cumulsum_z_tile.F diff_phase_multiple.F different_multiple.F eeboot.F eeboot_minimal.F eedata_example.F eedie.F eeintro_msg.F eeset_parms.F eewrite_eeenv.F exch0_r4.F exch0_r8.F exch0_rl.F exch0_rs.F exch1_bg_r4_cube.F exch1_bg_r8_cube.F exch1_bg_rl_cube.F exch1_bg_rs_cube.F exch1_r4.F exch1_r4_cube.F exch1_r8.F exch1_r8_cube.F exch1_rl.F exch1_rl_ad.F exch1_rl_cube.F exch1_rl_cube_ad.F exch1_rs.F exch1_rs_ad.F exch1_rs_cube.F exch1_rs_cube_ad.F exch1_uv_r4_cube.F exch1_uv_r8_cube.F exch1_uv_rl_cube.F exch1_uv_rs_cube.F exch1_z_r4_cube.F exch1_z_r8_cube.F exch1_z_rl_cube.F exch1_z_rs_cube.F exch_3d_r4.F exch_3d_r8.F exch_3d_rl.F exch_3d_rs.F exch_cycle_ebl.F exch_init.F exch_r4_recv_get_x.F exch_r4_recv_get_y.F exch_r4_send_put_x.F exch_r4_send_put_y.F exch_r8_recv_get_x.F exch_r8_recv_get_y.F exch_r8_send_put_x.F exch_r8_send_put_y.F exch_rl_recv_get_x.F exch_rl_recv_get_y.F exch_rl_send_put_x.F exch_rl_send_put_y.F exch_rs_recv_get_x.F exch_rs_recv_get_y.F exch_rs_send_put_x.F exch_rs_send_put_y.F exch_s3d_r4.F exch_s3d_r8.F exch_s3d_rl.F exch_s3d_rs.F exch_sm_3d_r4.F exch_sm_3d_r8.F exch_sm_3d_rl.F exch_sm_3d_rs.F exch_uv_3d_r4.F exch_uv_3d_r8.F exch_uv_3d_rl.F exch_uv_3d_rs.F exch_uv_agrid_3d_r4.F exch_uv_agrid_3d_r8.F exch_uv_agrid_3d_rl.F exch_uv_agrid_3d_rs.F exch_uv_bgrid_3d_r4.F exch_uv_bgrid_3d_r8.F exch_uv_bgrid_3d_rl.F exch_uv_bgrid_3d_rs.F exch_uv_dgrid_3d_r4.F exch_uv_dgrid_3d_r8.F exch_uv_dgrid_3d_rl.F exch_uv_dgrid_3d_rs.F exch_uv_xy_r4.F exch_uv_xy_r8.F exch_uv_xy_rl.F exch_uv_xy_rs.F exch_uv_xyz_r4.F exch_uv_xyz_r8.F exch_uv_xyz_rl.F exch_uv_xyz_rs.F exch_xy_r4.F exch_xy_r8.F exch_xy_rl.F exch_xy_rs.F exch_xyz_r4.F exch_xyz_r8.F exch_xyz_rl.F exch_xyz_rs.F exch_z_3d_r4.F exch_z_3d_r8.F exch_z_3d_rl.F exch_z_3d_rs.F fill_cs_corner_ag_rl.F fill_cs_corner_tr_rl.F fill_cs_corner_uv_rl.F fill_cs_corner_uv_rs.F fool_the_compiler.F gather_2d_r4.F gather_2d_r8.F gather_2d_wh_r4.F gather_2d_wh_r8.F gather_vec_r4.F gather_vec_r8.F gather_xz.F gather_yz.F get_periodic_interval.F global_max.F global_sum.F global_sum_singlecpu.F global_sum_tile.F global_vec_sum.F gsl_ieee_env.c gsum.F ini_communication_patterns.F ini_procs.F ini_threading_environment.F lef_zero.F main.F master_cpu_io.F master_cpu_thread.F mds_byteswapi4.F mds_byteswapr4.F mds_byteswapr8.F mds_flush.F mds_reclen.F mdsfindunit.F memsync.F nml_change_syntax.F nml_set_terminator.F open_copy_data_file.F print.F ptwrapper.c reset_halo.F scatter_2d_r4.F scatter_2d_r8.F scatter_2d_wh_r4.F scatter_2d_wh_r8.F scatter_vec_r4.F scatter_vec_r8.F scatter_xz.F scatter_yz.F setdir.c setrlstk.c sigreg.c stop_if_error.F tim.c timer_stats.c timers.F utils.F write_utils.F eesupp.flow exch1_ad.flow :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/eesupp/src/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/eesupp/src/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/model/src
+#  These files are linked from $(ROOTDIR)/model/src ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/model/src )
  adams_bashforth2.F adams_bashforth3.F add_walls2masks.F apply_forcing.F calc_3d_diffusivity.F calc_adv_flow.F calc_div_ghat.F calc_eddy_stress.F calc_grad_phi_fv.F calc_grad_phi_hyd.F calc_grad_phi_surf.F calc_grid_angles.F calc_gw.F calc_ivdc.F calc_oce_mxlayer.F calc_phi_hyd.F calc_r_star.F calc_surf_dr.F calc_viscosity.F calc_wsurf_tr.F cg2d.F cg2d_ex0.F cg2d_nsa.F cg2d_sr.F cg3d.F cg3d_ex0.F check_pickup.F config_check.F config_summary.F convective_adjustment.F convective_adjustment_ini.F convective_weights.F convectively_mixtracer.F correction_step.F cycle_ab_tracer.F cycle_tracer.F diags_oceanic_surf_flux.F diags_phi_hyd.F diags_phi_rlow.F diags_rho.F do_atmospheric_phys.F do_fields_blocking_exchanges.F do_oceanic_phys.F do_stagger_fields_exchanges.F do_statevars_diags.F do_statevars_tave.F do_the_model_io.F do_write_pickup.F dynamics.F external_fields_load.F external_forcing.F external_forcing_surf.F find_alpha.F find_hyd_press_1d.F find_rho.F forcing_surf_relax.F forward_step.F freesurf_rescale_g.F freeze_surface.F grad_sigma.F gsw_teos10.F impldiff.F ini_cartesian_grid.F ini_cg2d.F ini_cg3d.F ini_cori.F ini_curvilinear_grid.F ini_cylinder_grid.F ini_depths.F ini_dynvars.F ini_eos.F ini_ffields.F ini_fields.F ini_forcing.F ini_global_domain.F ini_grid.F ini_linear_phisurf.F ini_local_grid.F ini_masks_etc.F ini_mixing.F ini_mnc_vars.F ini_model_io.F ini_nh_fields.F ini_nh_vars.F ini_nlfs_vars.F ini_p_ground.F ini_parms.F ini_pressure.F ini_psurf.F ini_salt.F ini_sigma_hfac.F ini_spherical_polar_grid.F ini_theta.F ini_vel.F ini_vertical_grid.F initialise_fixed.F initialise_varia.F integr_continuity.F integrate_for_w.F load_fields_driver.F load_grid_spacing.F load_ref_files.F main_do_loop.F momentum_correction_step.F packages_boot.F packages_check.F packages_error_msg.F packages_init_fixed.F packages_init_variables.F packages_print_msg.F packages_readparms.F packages_unused_msg.F packages_write_pickup.F plot_field.F port_rand.F post_cg3d.F pre_cg3d.F pressure_for_eos.F read_pickup.F remove_mean.F reset_nlfs_vars.F rotate_spherical_polar_grid.F rotate_uv2en.F salt_integrate.F seawater.F set_defaults.F set_grid_factors.F set_parms.F set_ref_state.F solve_for_pressure.F solve_pentadiagonal.F solve_tridiagonal.F solve_uv_tridiago.F state_summary.F swfrac.F taueddy_init_varia.F taueddy_tendency_apply.F temp_integrate.F the_main_loop.F the_model_main.F thermodynamics.F timestep.F timestep_tracer.F timestep_wvel.F tracers_correction_step.F tracers_iigw_correction.F turnoff_model_io.F update_cg2d.F update_etah.F update_etaws.F update_masks_etc.F update_r_star.F update_sigma.F update_surf_dr.F write_grid.F write_pickup.F write_state.F :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/model/src/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/model/src/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/eesupp/inc
+#  These files are linked from $(ROOTDIR)/eesupp/inc ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/eesupp/inc )
  BAR2.h BARRIER.h CPP_EEMACROS.h CPP_EEOPTIONS.h CUMULSUM.h DEF_IN_MAKEFILE.h EEBUFF_SCPU.h EEPARAMS.h EESUPPORT.h EXCH.h GLOBAL_MAX.h GLOBAL_SUM.h MAIN_PDIRECTIVES1.h MAIN_PDIRECTIVES2.h MPI_INFO.h SIGREG.h :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/eesupp/inc/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/eesupp/inc/$@ $@; fi
 
-#  These files are linked from /Users/jklymak/MITgcmc66b/MITgcm/model/inc
+#  These files are linked from $(ROOTDIR)/model/inc ( aka /Users/jklymak/Dropbox/MITgcmCVS/MITgcm/model/inc )
  CG2D.h CG3D.h DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h DYNVARS.h DYU_MACROS.h EOS.h FCORI_MACROS.h FFIELDS.h GRID.h GRID_MACROS.h HFACC_MACROS.h HFACS_MACROS.h HFACW_MACROS.h MASKS_MACROS.h MASKW_MACROS.h NH_VARS.h PARAMS.h RAS_MACROS.h RAW_MACROS.h RA_MACROS.h RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h RESTART.h SET_GRID.h SOLVE_FOR_PRESSURE.h SOLVE_FOR_PRESSURE3D.h SURFACE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h THE_MODEL_COMMON_BLOCKS.h XC_MACROS.h YC_MACROS.h :
-	if [ ! -L $@ ]; then $(LN) /Users/jklymak/MITgcmc66b/MITgcm/model/inc/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/model/inc/$@ $@; fi
 
 
 # DO NOT DELETE
@@ -2085,6 +2036,9 @@ diagnostics_fill_state.for: GAD.h
 diagnostics_fract_fill.for: DIAG_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 diagnostics_fract_fill.for: CPP_EEOPTIONS.h CPP_EEMACROS.h EEPARAMS.h SIZE.h
 diagnostics_fract_fill.for: DIAGNOSTICS_SIZE.h DIAGNOSTICS.h
+diagnostics_ini_io.for: DIAG_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
+diagnostics_ini_io.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
+diagnostics_ini_io.for: PARAMS.h DIAGNOSTICS_SIZE.h DIAGNOSTICS.h
 diagnostics_init_early.for: DIAG_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 diagnostics_init_early.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 diagnostics_init_early.for: PARAMS.h DIAGNOSTICS_SIZE.h DIAGNOSTICS.h
@@ -3114,7 +3068,7 @@ gad_pqm_p5e_y.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
 gad_pqm_p5e_y.for: TANPHIATV_MACROS.h FCORI_MACROS.h GAD.h
 gad_read_pickup.for: GAD_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 gad_read_pickup.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
-gad_read_pickup.for: PARAMS.h GAD.h GAD_SOM_VARS.h MNC_PARAMS.h
+gad_read_pickup.for: PARAMS.h GAD.h GAD_SOM_VARS.h
 gad_som_adv_r.for: GAD_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 gad_som_adv_r.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h
 gad_som_adv_r.for: GRID.h GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
@@ -3186,7 +3140,7 @@ gad_u3c4_impl_r.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h
 gad_u3c4_impl_r.for: EEPARAMS.h PARAMS.h GAD.h
 gad_write_pickup.for: GAD_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 gad_write_pickup.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
-gad_write_pickup.for: PARAMS.h GAD.h GAD_SOM_VARS.h MNC_PARAMS.h
+gad_write_pickup.for: PARAMS.h GAD.h GAD_SOM_VARS.h
 salt_fill.for: GAD_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 salt_fill.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h GRID.h GRID_MACROS.h
 salt_fill.for: DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h
@@ -3329,96 +3283,6 @@ mdsio_writelocal.for: PARAMS.h MDSIO_BUFF_3D.h
 mdsio_writevec_loc.for: MDSIO_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 mdsio_writevec_loc.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 mdsio_writevec_loc.for: PARAMS.h MDSIO_BUFF_3D.h
-MNC_CW_READWRITE_I.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-MNC_CW_READWRITE_I.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h
-MNC_CW_READWRITE_I.for: /usr/local/include/netcdf.inc MNC_COMMON.h MNC_SIZE.h
-MNC_CW_READWRITE_I.for: SIZE.h MNC_BUFF.h EEPARAMS.h PARAMS.h MNC_PARAMS.h
-MNC_CW_READWRITE_RL.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-MNC_CW_READWRITE_RL.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h
-MNC_CW_READWRITE_RL.for: /usr/local/include/netcdf.inc MNC_COMMON.h
-MNC_CW_READWRITE_RL.for: MNC_SIZE.h SIZE.h MNC_BUFF.h EEPARAMS.h PARAMS.h
-MNC_CW_READWRITE_RL.for: MNC_PARAMS.h
-MNC_CW_READWRITE_RS.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-MNC_CW_READWRITE_RS.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h
-MNC_CW_READWRITE_RS.for: /usr/local/include/netcdf.inc MNC_COMMON.h
-MNC_CW_READWRITE_RS.for: MNC_SIZE.h SIZE.h MNC_BUFF.h EEPARAMS.h PARAMS.h
-MNC_CW_READWRITE_RS.for: MNC_PARAMS.h
-mnc_cw_citer.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_citer.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h
-mnc_cw_citer.for: MNC_SIZE.h EEPARAMS.h
-mnc_cw_cvars.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_cvars.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h
-mnc_cw_cvars.for: MNC_SIZE.h SIZE.h EEPARAMS.h PARAMS.h GRID.h GRID_MACROS.h
-mnc_cw_cvars.for: DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h
-mnc_cw_cvars.for: DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h DYU_MACROS.h
-mnc_cw_cvars.for: HFACC_MACROS.h HFACS_MACROS.h HFACW_MACROS.h
-mnc_cw_cvars.for: RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h
-mnc_cw_cvars.for: RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h
-mnc_cw_cvars.for: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h
-mnc_cw_cvars.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h XC_MACROS.h
-mnc_cw_cvars.for: YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
-mnc_cw_cvars.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
-mnc_cw_cvars.for: TANPHIATV_MACROS.h FCORI_MACROS.h
-mnc_cw_cvars.for: /usr/local/include/netcdf.inc
-mnc_cw_init.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_init.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h
-mnc_cw_init.for: MNC_SIZE.h EEPARAMS.h
-mnc_cw_missingvals.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_missingvals.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h
-mnc_cw_missingvals.for: MNC_COMMON.h MNC_SIZE.h EEPARAMS.h
-mnc_cw_model_attr.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_model_attr.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h
-mnc_cw_model_attr.for: BUILD_INFO.h SIZE.h EEPARAMS.h PARAMS.h MNC_PARAMS.h
-mnc_cw_udim.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_udim.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h
-mnc_cw_udim.for: MNC_SIZE.h EEPARAMS.h
-mnc_cw_write_grid_info.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cw_write_grid_info.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h
-mnc_cw_write_grid_info.for: MNC_COMMON.h MNC_SIZE.h SIZE.h EEPARAMS.h
-mnc_cw_write_grid_info.for: PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h
-mnc_cw_write_grid_info.for: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h
-mnc_cw_write_grid_info.for: DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h
-mnc_cw_write_grid_info.for: DYU_MACROS.h HFACC_MACROS.h HFACS_MACROS.h
-mnc_cw_write_grid_info.for: HFACW_MACROS.h RECIP_DXC_MACROS.h
-mnc_cw_write_grid_info.for: RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h
-mnc_cw_write_grid_info.for: RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h
-mnc_cw_write_grid_info.for: RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h
-mnc_cw_write_grid_info.for: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h
-mnc_cw_write_grid_info.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
-mnc_cw_write_grid_info.for: XC_MACROS.h YC_MACROS.h RA_MACROS.h RAW_MACROS.h
-mnc_cw_write_grid_info.for: RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
-mnc_cw_write_grid_info.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h
-mnc_cw_write_grid_info.for: FCORI_MACROS.h
-mnc_cwrapper.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_cwrapper.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h
-mnc_cwrapper.for: MNC_SIZE.h EEPARAMS.h SIZE.h PARAMS.h
-mnc_cwrapper.for: /usr/local/include/netcdf.inc
-mnc_dim.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_dim.for: CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h MNC_SIZE.h
-mnc_dim.for: EEPARAMS.h /usr/local/include/netcdf.inc
-mnc_dump.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_dump.for: CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h MNC_SIZE.h
-mnc_file.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_file.for: CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h MNC_SIZE.h
-mnc_file.for: EEPARAMS.h /usr/local/include/netcdf.inc
-mnc_grid.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_grid.for: CPP_EEMACROS.h MNC_ID_HEADER.h MNC_COMMON.h MNC_SIZE.h
-mnc_grid.for: EEPARAMS.h /usr/local/include/netcdf.inc
-mnc_init.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_init.for: CPP_EEMACROS.h MNC_ID_HEADER.h SIZE.h EEPARAMS.h PARAMS.h
-mnc_init.for: MNC_COMMON.h MNC_SIZE.h MNC_PARAMS.h
-mnc_readparms.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_readparms.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h SIZE.h
-mnc_readparms.for: MNC_COMMON.h MNC_SIZE.h EEPARAMS.h PARAMS.h MNC_PARAMS.h
-mnc_update_time.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
-mnc_update_time.for: CPP_EEOPTIONS.h CPP_EEMACROS.h MNC_ID_HEADER.h SIZE.h
-mnc_update_time.for: EEPARAMS.h PARAMS.h MNC_PARAMS.h
-mnc_utils.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_utils.for: CPP_EEMACROS.h MNC_ID_HEADER.h EEPARAMS.h
-mnc_utils.for: /usr/local/include/netcdf.inc MNC_COMMON.h MNC_SIZE.h
-mnc_var.for: MNC_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-mnc_var.for: CPP_EEMACROS.h MNC_ID_HEADER.h /usr/local/include/netcdf.inc
-mnc_var.for: MNC_COMMON.h MNC_SIZE.h EEPARAMS.h
 mom_calc_3d_strain.for: MOM_COMMON_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 mom_calc_3d_strain.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 mom_calc_3d_strain.for: PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h
@@ -4128,7 +3992,7 @@ mom_vecinv.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 mom_vecinv.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
 mom_vecinv.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h
 mom_vecinv.for: SURFACE.h DYNVARS.h MOM_VISC.h TIMEAVE_STATV.h
-mom_vecinv.for: TIMEAVE_OPTIONS.h MNC_PARAMS.h
+mom_vecinv.for: TIMEAVE_OPTIONS.h
 mom_vi_coriolis.for: MOM_VECINV_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 mom_vi_coriolis.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h GRID.h
 mom_vi_coriolis.for: GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h
@@ -4392,7 +4256,7 @@ monitor.for: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 monitor.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 monitor.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
 monitor.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h
-monitor.for: FFIELDS.h MONITOR.h MNC_PARAMS.h
+monitor.for: FFIELDS.h MONITOR.h
 monitor_ad.for: MONITOR_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 monitor_ad.for: CPP_EEOPTIONS.h CPP_EEMACROS.h AD_CONFIG.h SIZE.h EEPARAMS.h
 monitor_ad.for: PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
@@ -4405,7 +4269,7 @@ monitor_ad.for: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 monitor_ad.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 monitor_ad.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
 monitor_ad.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h
-monitor_ad.for: MONITOR.h MNC_PARAMS.h
+monitor_ad.for: MONITOR.h
 monitor_g.for: MONITOR_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 monitor_g.for: CPP_EEOPTIONS.h CPP_EEMACROS.h AD_CONFIG.h SIZE.h EEPARAMS.h
 monitor_g.for: PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
@@ -4418,7 +4282,7 @@ monitor_g.for: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
 monitor_g.for: XC_MACROS.h YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
 monitor_g.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
 monitor_g.for: TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h FFIELDS.h
-monitor_g.for: MONITOR.h MNC_PARAMS.h
+monitor_g.for: MONITOR.h
 obcs_add_tides.for: OBCS_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 obcs_add_tides.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h
 obcs_add_tides.for: GRID.h GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
@@ -4842,6 +4706,8 @@ read_mflds.for: RW_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 read_mflds.for: CPP_EEMACROS.h EEPARAMS.h RW_MFLDS.h SIZE.h PARAMS.h
 read_rec.for: RW_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 read_rec.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h
+rw_get_suffix.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h
+rw_get_suffix.for: EEPARAMS.h PARAMS.h RW_OPTIONS.h PACKAGES_CONFIG.h
 set_write_global_fld.for: CPP_EEOPTIONS.h CPP_EEMACROS.h
 write_fld_3d_rl.for: RW_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 write_fld_3d_rl.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
@@ -4913,7 +4779,7 @@ timeave_cumul_dif_1t.for: FCORI_MACROS.h
 timeave_cumulate.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 timeave_init_fixed.for: TIMEAVE_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 timeave_init_fixed.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
-timeave_init_fixed.for: PARAMS.h MNC_PARAMS.h
+timeave_init_fixed.for: PARAMS.h
 timeave_norma_2v.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 timeave_normalize.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 timeave_reset.for: TIMEAVE_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
@@ -4932,7 +4798,7 @@ timeave_statv_write.for: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 timeave_statv_write.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h
 timeave_statv_write.for: RA_MACROS.h RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h
 timeave_statv_write.for: MASKS_MACROS.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h
-timeave_statv_write.for: FCORI_MACROS.h TIMEAVE_STATV.h MNC_PARAMS.h
+timeave_statv_write.for: FCORI_MACROS.h TIMEAVE_STATV.h
 timeave_statvars.for: TIMEAVE_OPTIONS.h PACKAGES_CONFIG.h CPP_OPTIONS.h
 timeave_statvars.for: CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 timeave_statvars.for: PARAMS.h DYNVARS.h GRID.h GRID_MACROS.h DXC_MACROS.h
@@ -5529,7 +5395,6 @@ config_summary.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h XC_MACROS.h
 config_summary.for: YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
 config_summary.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
 config_summary.for: TANPHIATV_MACROS.h FCORI_MACROS.h MOM_VISC.h SET_GRID.h
-config_summary.for: MNC_PARAMS.h
 convective_adjustment.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 convective_adjustment.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h
 convective_adjustment.for: DYNVARS.h GRID.h GRID_MACROS.h DXC_MACROS.h
@@ -5884,8 +5749,7 @@ ini_cori.for: RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h
 ini_cori.for: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 ini_cori.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 ini_cori.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
-ini_cori.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h
-ini_cori.for: MNC_PARAMS.h MONITOR.h
+ini_cori.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h MONITOR.h
 ini_curvilinear_grid.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 ini_curvilinear_grid.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h GRID.h
 ini_curvilinear_grid.for: GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
@@ -5900,7 +5764,7 @@ ini_curvilinear_grid.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h
 ini_curvilinear_grid.for: XC_MACROS.h YC_MACROS.h RA_MACROS.h RAW_MACROS.h
 ini_curvilinear_grid.for: RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
 ini_curvilinear_grid.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h
-ini_curvilinear_grid.for: FCORI_MACROS.h MNC_PARAMS.h
+ini_curvilinear_grid.for: FCORI_MACROS.h
 ini_cylinder_grid.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h
 ini_cylinder_grid.for: EEPARAMS.h PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h
 ini_cylinder_grid.for: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h
@@ -5925,7 +5789,7 @@ ini_depths.for: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h
 ini_depths.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h XC_MACROS.h
 ini_depths.for: YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
 ini_depths.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
-ini_depths.for: TANPHIATV_MACROS.h FCORI_MACROS.h SURFACE.h MNC_PARAMS.h
+ini_depths.for: TANPHIATV_MACROS.h FCORI_MACROS.h SURFACE.h
 ini_dynvars.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h
 ini_dynvars.for: EEPARAMS.h PARAMS.h DYNVARS.h
 ini_eos.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
@@ -5979,8 +5843,7 @@ ini_grid.for: RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h
 ini_grid.for: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 ini_grid.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 ini_grid.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
-ini_grid.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h
-ini_grid.for: MNC_PARAMS.h MONITOR.h
+ini_grid.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h MONITOR.h
 ini_linear_phisurf.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 ini_linear_phisurf.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h GRID.h
 ini_linear_phisurf.for: GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h
@@ -6121,7 +5984,6 @@ ini_salt.for: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 ini_salt.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 ini_salt.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
 ini_salt.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h
-ini_salt.for: MNC_PARAMS.h
 ini_sigma_hfac.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h
 ini_sigma_hfac.for: EEPARAMS.h PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h
 ini_sigma_hfac.for: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h
@@ -6161,7 +6023,6 @@ ini_theta.for: RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 ini_theta.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
 ini_theta.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
 ini_theta.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h
-ini_theta.for: MNC_PARAMS.h
 ini_vel.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h EEPARAMS.h
 ini_vel.for: PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
 ini_vel.for: DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h
@@ -6310,7 +6171,7 @@ pressure_for_eos.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
 pressure_for_eos.for: TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h
 read_pickup.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 read_pickup.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h RESTART.h
-read_pickup.for: DYNVARS.h SURFACE.h FFIELDS.h GAD.h MNC_PARAMS.h
+read_pickup.for: DYNVARS.h SURFACE.h FFIELDS.h GAD.h
 remove_mean.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h
 remove_mean.for: EEPARAMS.h PARAMS.h
 reset_nlfs_vars.for: CPP_OPTIONS.h CPP_EEOPTIONS.h CPP_EEMACROS.h SIZE.h
@@ -6610,20 +6471,20 @@ update_surf_dr.for: YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
 update_surf_dr.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
 update_surf_dr.for: TANPHIATV_MACROS.h FCORI_MACROS.h SURFACE.h
 write_grid.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
-write_grid.for: CPP_EEMACROS.h AD_CONFIG.h SIZE.h EEPARAMS.h PARAMS.h
-write_grid.for: MNC_PARAMS.h GRID.h GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h
-write_grid.for: DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h
-write_grid.for: DYG_MACROS.h DYU_MACROS.h HFACC_MACROS.h HFACS_MACROS.h
-write_grid.for: HFACW_MACROS.h RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h
-write_grid.for: RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h
-write_grid.for: RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h
-write_grid.for: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
-write_grid.for: RECIP_HFACW_MACROS.h XC_MACROS.h YC_MACROS.h RA_MACROS.h
-write_grid.for: RAW_MACROS.h RAS_MACROS.h MASKW_MACROS.h MASKS_MACROS.h
-write_grid.for: TANPHIATU_MACROS.h TANPHIATV_MACROS.h FCORI_MACROS.h
+write_grid.for: CPP_EEMACROS.h AD_CONFIG.h SIZE.h EEPARAMS.h PARAMS.h GRID.h
+write_grid.for: GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h
+write_grid.for: DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h
+write_grid.for: DYU_MACROS.h HFACC_MACROS.h HFACS_MACROS.h HFACW_MACROS.h
+write_grid.for: RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h
+write_grid.for: RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h
+write_grid.for: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h
+write_grid.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h XC_MACROS.h
+write_grid.for: YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
+write_grid.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
+write_grid.for: TANPHIATV_MACROS.h FCORI_MACROS.h
 write_pickup.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 write_pickup.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h RESTART.h
-write_pickup.for: DYNVARS.h SURFACE.h FFIELDS.h GAD.h MNC_PARAMS.h
+write_pickup.for: DYNVARS.h SURFACE.h FFIELDS.h GAD.h
 write_state.for: PACKAGES_CONFIG.h CPP_OPTIONS.h CPP_EEOPTIONS.h
 write_state.for: CPP_EEMACROS.h SIZE.h EEPARAMS.h PARAMS.h GRID.h
 write_state.for: GRID_MACROS.h DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h
@@ -6635,4 +6496,4 @@ write_state.for: RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h
 write_state.for: RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h XC_MACROS.h
 write_state.for: YC_MACROS.h RA_MACROS.h RAW_MACROS.h RAS_MACROS.h
 write_state.for: MASKW_MACROS.h MASKS_MACROS.h TANPHIATU_MACROS.h
-write_state.for: TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h MNC_PARAMS.h
+write_state.for: TANPHIATV_MACROS.h FCORI_MACROS.h DYNVARS.h

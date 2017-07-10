@@ -41,10 +41,11 @@ dy = 1000
 # x direction
 xt = 410e3
 
-nmid = 50.
+nmid = 50
 dx0=300.
-nleft = (nx-nmid)/2
-nright = (nx-nmid)/2
+nleft = int((nx-nmid)/2)
+print(nleft)
+nright = int((nx-nmid)/2)
 dx = zeros(nx)
 dxleft = flipud(lininc(nleft,200.e3,dx0))
 dxright = lininc(nright,200.e3,dx0)

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installing 
+title: Installing
 ---
 # Installing Software on a Mac
 
@@ -12,7 +12,10 @@ Tested on macOS 10, but should work on relatively recent OS X as well.
    1. Install [homebrew](http://brew.sh)
    3. install gcc (compilers) `brew install gcc --without-multilib`.
    4. install mpich (multi-core processing) `brew install mpich2`
-   5. intstal netcdf (file storage) `brew install netcdf --with-fortran`
+   5. install hdf5 with mpi: `brew install hdf5 --with-mpi`
+   6. intstal netcdf (file storage) `brew install netcdf --with-fortran`
+
+Note that for the MITgcm as released `netcdf` does not require `hdf5` to be compiled with `mpi` (though the `MITgcm` itself requires `mpi`).  However, I am developing a parallel-aware netcdf interface for the `MITgcm`, so this step is useful. 
 
 ## Python
 
