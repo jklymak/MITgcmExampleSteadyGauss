@@ -8,7 +8,6 @@ import os
 
 def lininc(n,Dx,dx0):
   a=(Dx-n*dx0)*2./n/(n+1)
-  print a
   dx = dx0+arange(1.,n+1.,1.)*a
   return dx
 
@@ -24,11 +23,11 @@ outdir='../runs/RunFr%03d' % (10000*Fr)
 try:
   mkdir(outdir)
 except:
-  print outdir+' Exists'
+  print( outdir+' Exists')
 try:
   mkdir(outdir+'/figs')
 except:
-  print outdir+'/figs Exists'
+  print(outdir+'/figs Exists')
 copy('./gendata.py',outdir)
 
 # These must match ../code/SIZE.h
@@ -53,7 +52,7 @@ dx[0:nleft]=dxleft
 dx[(nleft):(nleft+nmid)]=dx0
 dx[(nleft+nmid):]=dxright
 x=cumsum(dx)
-x = x-x[nx/2]
+x = x-x[int(np.floor(nx/2))]
 
 with open(outdir+"/delXvar.bin", "wb") as f:
 	dx.tofile(f)
@@ -69,7 +68,7 @@ sigma = 4000. # m
 
 topo = 1500*exp(-x*x/(sigma**2))-1500+h0
 #topo = h0*exp(-x*x/(3000**2))
-print shape(topo)
+print(shape(topo))
 topo[topo<0.]=0.
 topo=-H+topo
 topo[topo<-H]=-H
@@ -119,7 +118,7 @@ if 1:
 # Forcing for boundaries
 dt=3720.
 time = arange(0,12.*3720.,dt)
-print time/3600./12.4
+print( time/3600./12.4)
 om = 2*pi/12.40/3600;
 uw = u0+0.*time
 ue = u0+0.*time
@@ -143,7 +142,7 @@ for j in range(0,ny):
 #print(uen)
 
 uwn=zeros((shape(time)[0],nz,ny))
-print shape(uwn)
+print(shape(uwn))
 for j in range(0,ny):
   for i in range(0,nz):
     uwn[:,i,j]=uw
@@ -160,7 +159,7 @@ for j in range(0,ny):
 	for i in range(0,nz):
 		for k in range(0,shape(time)[0]):
 			t[k,i,j]=T0[i]
-print shape(t)
+print(shape(t))
 with open(outdir+"/Te.bin", "wb") as f:
 	t.tofile(f)
 f.close()

@@ -1,19 +1,24 @@
 # diagnostics Package
 # Energy terms...
  &diagnostics_list 
-frequency(1) = -1860,
-timephase(1)=0.,
-fields(1,1)='SDIAG1',
-filename(1)='Ez',
-frequency(2) = 1860,
-fields(1,2)='SDIAG3',
-filename(2)='vE',
-frequency(3) = 1860,
-fields(1,3)='SDIAG6',
-filename(3)='vPbc',
-frequency(4) = 1860,
-fields(1,4)='SDIAG7',
-filename(4)='vPbt',
+# 3D variables.
+ frequency(1)  = -1860,
+ timePhase(1)      =  0,	
+ fields(1:6,1) = 'UVEL    ',
+ 	       	 'VVEL    ',
+		 'WVEL    ',
+		 'THETA   ',
+		 'SALT    ',
+		 'PHIHYD  ',
+ filename(1)   = 'statevars'
+#
+# 2D state vars.  Bummer these can't be in same file as above.
+ filename(2)   = 'statevars2d'
+ frequency(2)  = -1860,
+ timePhase(2)  = 0,
+ fields(1:2,2) = 'ETAN    ',
+ 	         'PHIBOT  ',
+#
 /
 
 &diag_statis_parms

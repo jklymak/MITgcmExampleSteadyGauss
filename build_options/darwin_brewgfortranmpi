@@ -10,13 +10,15 @@
 # cc-compiler is available only with the Apple Developer Tools,
 # so make sure that those are installed
 #
-CPP='/usr/local/bin/cpp -traditional -P'
+CPP='/usr/local/bin/cpp-7 -traditional -P'
 FC=mpif90
 CC=mpicc
 LINK=$FC
 NOOPTFLAGS='-O0'
 MAKEDEPEND='makedepend'
 DEFINES='-DWORDLENGTH=4 -DALWAYS_USE_MPI -DALLOW_USE_MPI'
+INCLUDES='-I/usr/local/include'
+LIBX='-I/usr/local/lib'
 
 #  For IEEE, use the "-ffloat-store" option
 if test "x$IEEE" = x ; then

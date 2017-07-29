@@ -67,7 +67,8 @@
 # once per tide checkpoint...
  pChkptFreq=44640,
  chkptFreq=0.0,
- dumpFreq=1860,
+ dumpFreq=0,
+ dumpInitAndLast=.FALSE.
  monitorFreq=1860,
 # Forcing for boundary condition files
  periodicExternalForcing=.TRUE.,
