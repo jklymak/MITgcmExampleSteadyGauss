@@ -10,10 +10,10 @@ Tested on macOS 10, but should work on relatively recent OS X as well.
    1. Install xcode using the App Store
    1. run `xcode-select --install` from command line
    1. Install [homebrew](http://brew.sh)
-   3. install gcc (compilers) `brew install gcc --without-multilib`.
-   4. install mpich (multi-core processing) `brew install mpich2`
-   5. install hdf5 with mpi: `brew install hdf5 --with-mpi --with-fortran`
-   6. intstal netcdf (file storage) `brew install -v netcdf --with-fortran`
+   3. install gcc (compilers) `brew install gcc`.
+   4. install open-mpi (multi-core processing) `brew install open-mpi`
+   5. install hdf5 with mpi: `brew install --build-from-source hdf5 --with-mpi`
+   6. install netcdf (file storage) `brew reinstall --build-from-source netcdf`
 
 Note that for the MITgcm as released `netcdf` does not require `hdf5` to be compiled with `mpi` (though the `MITgcm` itself requires `mpi`).  However, I am developing a parallel-aware netcdf interface for the `MITgcm`, so this step is useful.
 
