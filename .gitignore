@@ -1,3 +1,6 @@
 RunFr*
 build/*
 MITgcm/*
+.pixi/*
+*/.ipynb_checkpoints/*
+pixi.lock

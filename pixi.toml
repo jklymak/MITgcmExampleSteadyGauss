@@ -1,0 +1,36 @@
+[project]
+authors = ["Jody Klymak <jklymak@gmail.com>"]
+channels = ["conda-forge"]
+name = "MITgcmExampleSteadyGauss"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+description = "test to see if we can install, configure, and run an MITgcm project from pixi"
+
+[tasks]
+downloadmitgcm = { cmd = "git clone --depth 25 git@github.com:jklymak/MITgcm.git", outputs = ["MITgcm/model/src/write_state.F"] }
+configure = { cmd = "cd build && ../MITgcm/tools/genmake2 -optfile=../build_options/darwin_brewgfortranmpi -mods=../code/ -rootdir=../MITgcm -mpi", inputs = ["build_options/darwin_brewgfortranmpi", "code/packages.conf"], outputs = ["build/Makefile"], depends-on = ["downloadmitgcm"] }
+reallyclean = "cd build && make CLEAN"
+build = { cmd = "cd build && make depend && make", depends-on = ["configure"], inputs = ["code/SIZE.h", "code/OBCS_OPTIONS.h", "code/DIAGNOSTICS_SIZE.h", "code/CPP_OPTIONS.h"], outputs = ["build/mitgcmuv"] }
+preprun = { cmd = "cd input && python gendata.py", inputs = ["input/gendata.py", "build/mitgcmuv"], outputs = ["runs/RunFr1300/build/mitgcmuv"], depends-on = ["build"] }
+run = { cmd = "cd runs/RunFr1300/input && mpirun -np 4 ../build/mitgcmuv", inputs = ["runs/RunFr1300/input/data"], outputs = ["runs/RunFr1300/input/STDOUT.0000", "runs/RunFr1300/input/STDERR.0000"], depends-on = ["preprun"] }
+analyze = { cmd = "jupyter lab analysis/PlotRun.ipynb", depends-on = ["run"] }
+all = { depends-on = ["analyze"] }
+
+
+[dependencies]
+python = "<3.13"
+openmpi-mpicxx = ">=5.0.7,<6"
+openmpi-mpicc = ">=5.0.7,<6"
+openmpi-mpifort = ">=5.0.7,<6"
+openmpi = ">=5.0.7,<6"
+netcdf4 = ">=1.7.2,<2"
+jupyter = ">=1.1.1,<2"
+ipympl = ">=0.9.6,<0.10"
+matplotlib = ">=3.10.1,<4"
+numpy = ">=2.2.3,<3"
+xarray = ">=2025.1.2,<2026"
+xmitgcm = ">=0.5.2,<0.6"
+dask = ">=2025.2.0,<2026"
+cxx-compiler = ">=1.9.0,<2"
+clang = ">=18.1.8,<19"
+compilers = ">=1.9.0,<2"
