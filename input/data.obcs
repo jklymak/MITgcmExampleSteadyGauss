@@ -6,10 +6,10 @@
  OB_Jsouth=80*0,
  useOBCSsponge=.TRUE.,
  useOBCSprescribe=.TRUE.,
- OBEuFile = 'Ue.bin',
- OBWuFile = 'Uw.bin',
- OBEtFile = 'Te.bin',
- OBWtFile = 'Tw.bin',
+ OBEuFile = '../indata/Ue.bin',
+ OBWuFile = '../indata/Uw.bin',
+ OBEtFile = '../indata/Te.bin',
+ OBWtFile = '../indata/Tw.bin',
  /
 
 # Orlanski parameters

@@ -10,20 +10,26 @@
 # cc-compiler is available only with the Apple Developer Tools,
 # so make sure that those are installed
 #
-CPP='/usr/local/bin/cpp-7 -traditional -P'
+CPP="clang-cpp -traditional -P"
 FC=mpif90
 CC=mpicc
 LINK=$FC
 NOOPTFLAGS='-O0'
 MAKEDEPEND='makedepend'
 DEFINES='-DWORDLENGTH=4 -DALWAYS_USE_MPI -DALLOW_USE_MPI'
-INCLUDES='-I/usr/local/include'
-LIBX='-I/usr/local/lib'
+# This should work if you installed with conda:
+INCLUDES='-I$(CONDA_PREFIX)/include'
+
+# If not, you can try:
+# INCLUDES="-I../.pixi/envs/default/include"
+# change to this if not using pixi, and change the name of the environment and
+# mambaforge to the correct paths:
+# INCLUDES="-I/Users/jklymak/mambaforge/envs/my_mitgcm_env/include/mpi.h"
 
 #  For IEEE, use the "-ffloat-store" option
 if test "x$IEEE" = x ; then
 #    FFLAGS='-Wimplicit -Wunused -Wuninitialized'
-    FFLAGS='-Wunused -Wuninitialized '
+    FFLAGS='-Wunused -Wuninitialized -fallow-argument-mismatch'
     FOPTIM='-O3 -funroll-loops -ftree-vectorize -ffpe-trap=invalid'
 else
 #    FFLAGS='-Wimplicit -Wunused -ffloat-store'

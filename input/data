@@ -7,7 +7,7 @@
 # Continuous equation parameters
  &PARM01
  debugLevel=2,
- tRefFile='TRef.bin',
+ tRefFile='../indata/TRef.bin',
  sRef= 25*35.,
  viscAz=1.E-5,
  viscAh=1.0E-4,
@@ -83,14 +83,13 @@
  &PARM04
  usingCartesianGrid=.TRUE.,
  usingSphericalPolarGrid=.FALSE.,
- delXfile='delXvar.bin',
+ delXfile='../indata/delXvar.bin',
  delY=5.e3,
- delRfile = 'delZvar.bin',
+ delRfile = '../indata/delZvar.bin',
 /
 
 # Input datasets
  &PARM05
- bathyFile='topo.bin',
- mdsioLocalDir='../../',
- hydrogThetaFile='T0.bin',
+ bathyFile='../indata/topo.bin',
+ hydrogThetaFile='../indata/T0.bin',
  /

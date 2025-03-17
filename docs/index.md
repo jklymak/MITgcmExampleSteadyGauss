@@ -10,7 +10,32 @@
 
 ## Installing the stuff we need
 
-Have a look at [this Page](./install.html)
+The MITgcm requires the openmpi compilers to run in parallel. These are usual supplied on a supercluster, sometimes available via a `module load` command if they are not in the default environment.  On a Mac, these compilers used to be challenging to install, but `conda-forge` now has recipes that will install these for you with minimal effort.  (You can also use `brew`, but that is less portable).
+
+### Using pixi
+
+[pixi](https://pixi.sh/latest/) is a more contained `mamba/conda` that I would recommend for analyzing data, and it works well for MITgcm work as well.  Once you have installed pixi, you can download the requirements for the MITgcm and analysis using python by doing `pixi install` in the top directory of this repo.
+
+If you really just want to check that everything is working, you can now just type `pixi run all`, and the following steps will run in order, as defined in `./pixi.toml`:
+
+- `pixi run downloadmitgcm`: Grabs a recent MITgcm: `git clone --depth 25 git@github.com:jklymak/MITgcm.git`
+- `pixi run configure`: Runs the command that makes the `Makefile` for compilation via: `cd build && ../MITgcm/tools/genmake2 -optfile=../build_options/darwin_brewgfortranmpi -mods=../code/ -rootdir=../MITgcm -mpi`
+- `pixi run build`: Compiles the model (may take a while) by calling `cd build && make depend && make`.  If this works then there should be a `build/mitgcmuv` file created.
+- `pixi run preprun`: Generates the data files that the model needs to run: `cd input && python gendata.py`.  The model is setup in `runs/RunFr1300/`.
+- `pixi run run`: Executes the model using MPI.  Note you need at least 4 processors: `cd runs/RunFr1300/input && mpirun -np 4 ../build/mitgcmuv`.  This will take a while to run, and create a bunch of files in `runs/RunFr1300/input`.  If you aren't sure if it is running check for new files there.
+- `pixi run analyze`: Opens the jupyternotebook `analyisis/PlotRun.ipynb`.
+
+Note that when using pixi, you need to either get into the `pixi shell` to execute commands like `make`, or you need to do `pixi run make` to ensure the pixi environment is being used.
+
+Similarly, when analyzing the data, Make sure that `pixi` is being used as the "environment" or "kernel" in tools like Jupyter lab, or VSCode.
+
+### Manually:
+
+If not using pixi, then you can replicate the steps above manually using conda/mamba
+
+- See the `dependencies` field in `pixi.toml` for what packages to install in your environment.
+- You may need to change `build_options/darwin_brewgfortranmpi` to point the `INCLUDES` flag at the location in your environment.
+- When you run the steps above, be sure to run them in the environment you created.
 
 ## Setting up
 
@@ -24,7 +49,7 @@ Have a look at [this Page](./install.html)
    -rootdir=/Users/jklymak/MITgcmc66h/MITgcm
 ```
 
-then `make depend` followed by `make`
+then `make depend` followed by `make`.
 
 ### Changing domain size
 
@@ -46,7 +71,7 @@ then `make depend` followed by `make`
 
 **Generate the data**
 
-In `./input`, run `python gendata.py`.  
+In `./input`, run `python gendata.py`.
 
 Note that this writes many files in `../runs/RunFr1300`.  This is where
 we will run the model from.  Why do we move it?  Because we often want
