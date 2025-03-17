@@ -8,9 +8,9 @@
   - `build` is a placeholder for where the gcm should be built
   - `runs` is where you might keep model output.
 
-## Installing the stuff we need
+## Installing and running the code:
 
-The MITgcm requires the openmpi compilers to run in parallel. These are usual supplied on a supercluster, sometimes available via a `module load` command if they are not in the default environment.  On a Mac, these compilers used to be challenging to install, but `conda-forge` now has recipes that will install these for you with minimal effort.  (You can also use `brew`, but that is less portable).
+The MITgcm requires the openmpi compilers to run in parallel. These are often supplied on a supercluster, sometimes available via a `module load` command if they are not in the default environment.  On a Mac, these compilers used to be challenging to install, but `conda-forge` now has recipes that will install these for you with minimal effort (you can also use `brew`, but that is less portable).
 
 ### Using pixi
 
@@ -27,7 +27,7 @@ If you really just want to check that everything is working, you can now just ty
 
 Note that when using pixi, you need to either get into the `pixi shell` to execute commands like `make`, or you need to do `pixi run make` to ensure the pixi environment is being used.
 
-Similarly, when analyzing the data, Make sure that `pixi` is being used as the "environment" or "kernel" in tools like Jupyter lab, or VSCode.
+Similarly, when analyzing the data, make sure that `pixi` is being used as the "environment" or "kernel" in tools like Jupyter lab, or VSCode.
 
 ### Manually:
 
@@ -37,9 +37,8 @@ If not using pixi, then you can replicate the steps above manually using conda/m
 - You may need to change `build_options/darwin_brewgfortranmpi` to point the `INCLUDES` flag at the location in your environment.
 - When you run the steps above, be sure to run them in the environment you created.
 
-## Setting up
 
-### Compiling
+#### Compiling
 
 './build' is where we compile the gcm.  To compile you should run:
 
@@ -51,23 +50,7 @@ If not using pixi, then you can replicate the steps above manually using conda/m
 
 then `make depend` followed by `make`.
 
-### Changing domain size
-
-  1. Change `code/SIZE.h` and recompile.
-  3. If using open boundaries change `input/data.obcs`
-     i.e. `OB_Jnorth=80*0,` where in this case `ny=80`
-  4. Check `data.diagnostics` for the correct data being output for
-     your purpose.
-  2. Change `input/gendata.py` and rerun `python gendata.py`.  It
-     would be good practice to make a new name for the run at this
-     point.
-
-### Changing other parameters
-
-  1. Edit  `gendata.py`.  For new runs it is best to change the value of `outdir` right away.
-
-### Running
-
+#### Running
 
 **Generate the data**
 
@@ -92,4 +75,24 @@ mpirun -np 4 ../../build/mitgcmuv
 where `-np 4` means we want 4 processors (as also specified in `code/SIZE.h`)
 
 The results should be in `../runs/RunFr1300/` and if we used `nf90io`, then the data should be in ``statevars.nc` and `statevars2d.nc`.
+
+
+## Modifying to your own needs:
+
+You probably don't want to use the simulation provided, so now you need to do the work of creating your own simulation.
+
+### Changing domain size
+
+  1. Change `code/SIZE.h` and recompile.
+  3. If using open boundaries change `input/data.obcs`
+     i.e. `OB_Jnorth=80*0,` where in this case `ny=80`
+  4. Check `data.diagnostics` for the correct data being output for
+     your purpose.
+  2. Change `input/gendata.py` and rerun `python gendata.py`.  It
+     would be good practice to make a new name for the run at this
+     point.
+
+### Changing other parameters
+
+  1. Edit  `gendata.py`.  For new runs it is best to change the value of `outdir` right away so you don't overwrite your old runs.
 
